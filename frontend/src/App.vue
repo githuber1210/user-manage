@@ -1,6 +1,5 @@
 <template>
   <div class="admin-layout">
-    <!-- 侧边栏 -->
     <aside class="sidebar" :class="{ collapsed: sidebarCollapsed }">
       <div class="sidebar-brand">
         <div class="brand-icon">
@@ -9,20 +8,69 @@
             <polyline points="9 22 9 12 15 12 15 22"/>
           </svg>
         </div>
-        <span v-if="!sidebarCollapsed" class="brand-text">用户管理系统</span>
+        <span v-if="!sidebarCollapsed" class="brand-text">管理系统</span>
       </div>
 
       <nav class="sidebar-nav">
-        <router-link to="/" class="nav-item" :class="{ active: currentPath === '/' }">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-          <span v-if="!sidebarCollapsed">用户列表</span>
-        </router-link>
+        <div class="nav-section">
+          <div v-if="!sidebarCollapsed" class="nav-section-title">基础管理</div>
+          
+          <router-link to="/" class="nav-item" :class="{ active: isActive('/users') || currentPath === '/' }">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span v-if="!sidebarCollapsed">用户管理</span>
+          </router-link>
 
+          <router-link to="/roles" class="nav-item" :class="{ active: isActive('/roles') }">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span v-if="!sidebarCollapsed">角色管理</span>
+          </router-link>
+        </div>
+
+        <div class="nav-section">
+          <div v-if="!sidebarCollapsed" class="nav-section-title">教学管理</div>
+          
+          <router-link to="/majors" class="nav-item" :class="{ active: isActive('/majors') }">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span v-if="!sidebarCollapsed">专业管理</span>
+          </router-link>
+
+          <router-link to="/classes" class="nav-item" :class="{ active: isActive('/classes') }">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <line x1="3" y1="9" x2="21" y2="9"/>
+              <line x1="9" y1="21" x2="9" y2="9"/>
+            </svg>
+            <span v-if="!sidebarCollapsed">班级管理</span>
+          </router-link>
+
+          <router-link to="/teachers" class="nav-item" :class="{ active: isActive('/teachers') }">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/>
+            </svg>
+            <span v-if="!sidebarCollapsed">教师管理</span>
+          </router-link>
+
+          <router-link to="/students" class="nav-item" :class="{ active: isActive('/students') }">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span v-if="!sidebarCollapsed">学生管理</span>
+          </router-link>
+        </div>
       </nav>
 
       <div v-if="!sidebarCollapsed" class="sidebar-footer">
@@ -30,9 +78,7 @@
       </div>
     </aside>
 
-    <!-- 主内容区 -->
     <div class="main-area" :class="{ expanded: sidebarCollapsed }">
-      <!-- 顶部栏 -->
       <header class="topbar">
         <div class="topbar-left">
           <button class="toggle-btn" @click="sidebarCollapsed = !sidebarCollapsed">
@@ -51,7 +97,6 @@
         </div>
       </header>
 
-      <!-- 页面内容 -->
       <main class="content-area">
         <transition name="page-fade" mode="out-in">
           <router-view />
@@ -72,13 +117,38 @@ let timer = null
 
 const currentPath = computed(() => route.path)
 
+const isActive = (path) => {
+  return currentPath.value.startsWith(path)
+}
+
 const pageTitle = computed(() => {
-  const titles = {
-    '/': '用户列表',
-    '/add': '添加用户'
-  }
-  if (route.path.startsWith('/edit/')) return '编辑用户'
-  return titles[route.path] || '用户管理'
+  const path = currentPath.value
+  
+  if (path === '/' || path === '/users') return '用户列表'
+  if (path === '/users/add') return '添加用户'
+  if (path.startsWith('/users/edit/')) return '编辑用户'
+  
+  if (path === '/roles') return '角色列表'
+  if (path === '/roles/add') return '添加角色'
+  if (path.startsWith('/roles/edit/')) return '编辑角色'
+  
+  if (path === '/majors') return '专业列表'
+  if (path === '/majors/add') return '添加专业'
+  if (path.startsWith('/majors/edit/')) return '编辑专业'
+  
+  if (path === '/classes') return '班级列表'
+  if (path === '/classes/add') return '添加班级'
+  if (path.startsWith('/classes/edit/')) return '编辑班级'
+  
+  if (path === '/teachers') return '教师列表'
+  if (path === '/teachers/add') return '添加教师'
+  if (path.startsWith('/teachers/edit/')) return '编辑教师'
+  
+  if (path === '/students') return '学生列表'
+  if (path === '/students/add') return '添加学生'
+  if (path.startsWith('/students/edit/')) return '编辑学生'
+  
+  return '管理系统'
 })
 
 const updateTime = () => {
@@ -152,7 +222,6 @@ html, body {
   overflow: hidden;
 }
 
-/* 侧边栏 */
 .sidebar {
   width: var(--sidebar-width);
   background: var(--sidebar-bg);
@@ -197,7 +266,23 @@ html, body {
   padding: 16px 12px;
   display: flex;
   flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+.nav-section {
+  display: flex;
+  flex-direction: column;
   gap: 4px;
+}
+
+.nav-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(148, 163, 184, 0.6);
+  padding: 8px 12px 4px;
 }
 
 .nav-item {
@@ -239,7 +324,6 @@ html, body {
   opacity: 0.6;
 }
 
-/* 主内容区 */
 .main-area {
   flex: 1;
   display: flex;
@@ -248,11 +332,8 @@ html, body {
   transition: margin-left 0s;
 }
 
-.main-area.expanded {
-  /* 侧边栏折叠时无需额外处理，flex:1自动填充 */
-}
+.main-area.expanded {}
 
-/* 顶部栏 */
 .topbar {
   height: var(--topbar-height);
   background: var(--topbar-bg);
@@ -310,7 +391,6 @@ html, body {
   font-weight: 400;
 }
 
-/* 内容区 */
 .content-area {
   flex: 1;
   overflow-y: auto;
@@ -318,7 +398,6 @@ html, body {
   background: var(--content-bg);
 }
 
-/* 页面过渡动画 */
 .page-fade-enter-active {
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
@@ -333,7 +412,6 @@ html, body {
   opacity: 0;
 }
 
-/* 响应式 */
 @media (max-width: 768px) {
   .sidebar {
     position: fixed;
