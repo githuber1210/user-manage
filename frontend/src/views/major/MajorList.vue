@@ -173,7 +173,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { majorApi } from '../api/major'
+import { majorApi } from '../../api/major'
 
 const router = useRouter()
 const majors = ref([])

@@ -89,7 +89,7 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { majorApi } from '../api/major'
+import { majorApi } from '../../api/major'
 
 const router = useRouter()
 const route = useRoute()

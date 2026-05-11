@@ -166,7 +166,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { roleApi } from '../api/role'
+import { roleApi } from '../../api/role'
 
 const router = useRouter()
 const roles = ref([])

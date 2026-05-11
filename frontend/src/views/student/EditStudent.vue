@@ -107,8 +107,8 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { studentApi } from '../api/student'
-import { classApi } from '../api/class'
+import { studentApi } from '../../api/student'
+import { classApi } from '../../api/class'
 
 const router = useRouter()
 const route = useRoute()

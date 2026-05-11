@@ -180,7 +180,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { classApi } from '../api/class'
+import { classApi } from '../../api/class'
 
 const router = useRouter()
 const classes = ref([])

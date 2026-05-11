@@ -85,9 +85,9 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { classApi } from '../api/class'
-import { majorApi } from '../api/major'
-import { teacherApi } from '../api/teacher'
+import { classApi } from '../../api/class'
+import { majorApi } from '../../api/major'
+import { teacherApi } from '../../api/teacher'
 
 const router = useRouter()
 const submitting = ref(false)

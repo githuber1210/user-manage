@@ -83,7 +83,7 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { roleApi } from '../api/role'
+import { roleApi } from '../../api/role'
 
 const router = useRouter()
 const route = useRoute()

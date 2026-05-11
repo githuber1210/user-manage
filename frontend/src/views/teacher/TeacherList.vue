@@ -185,7 +185,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { teacherApi } from '../api/teacher'
+import { teacherApi } from '../../api/teacher'
 
 const router = useRouter()
 const teachers = ref([])

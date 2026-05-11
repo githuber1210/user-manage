@@ -95,9 +95,9 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { classApi } from '../api/class'
-import { majorApi } from '../api/major'
-import { teacherApi } from '../api/teacher'
+import { classApi } from '../../api/class'
+import { majorApi } from '../../api/major'
+import { teacherApi } from '../../api/teacher'
 
 const router = useRouter()
 const route = useRoute()

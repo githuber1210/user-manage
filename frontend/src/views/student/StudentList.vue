@@ -180,7 +180,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { studentApi } from '../api/student'
+import { studentApi } from '../../api/student'
 
 const router = useRouter()
 const students = ref([])
