@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.TeacherMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.Teacher">
+        <id column="id" property="id" />
+        <result column="teacher_no" property="teacherNo" />
+        <result column="name" property="name" />
+        <result column="gender" property="gender" />
+        <result column="title" property="title" />
+        <result column="major_id" property="majorId" />
+        <result column="major_name" property="majorName" />
+        <result column="college" property="college" />
+        <result column="phone" property="phone" />
+        <result column="email" property="email" />
+        <result column="enabled" property="enabled" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+    </resultMap>
+
+    <sql id="BaseColumnList">
+        id, teacher_no, name, gender, title, major_id, major_name, college, phone, email, enabled, created_at, updated_at
+    </sql>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT t.*, m.major_name
+        FROM teacher t
+        LEFT JOIN major m ON t.major_id = m.id
+        ORDER BY t.created_at DESC
+    </select>
+
+    <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT t.*, m.major_name
+        FROM teacher t
+        LEFT JOIN major m ON t.major_id = m.id
+        WHERE t.id = #{id}
+    </select>
+
+    <select id="findByTeacherNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT t.*, m.major_name
+        FROM teacher t
+        LEFT JOIN major m ON t.major_id = m.id
+        WHERE t.teacher_no = #{teacherNo}
+    </select>
+
+    <select id="findByMajorId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT t.*, m.major_name
+        FROM teacher t
+        LEFT JOIN major m ON t.major_id = m.id
+        WHERE t.major_id = #{majorId}
+        ORDER BY t.created_at DESC
+    </select>
+
+    <insert id="insert" parameterType="com.example.demo.entity.Teacher" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO teacher (teacher_no, name, gender, title, major_id, major_name, college, phone, email, enabled, created_at, updated_at)
+        VALUES (#{teacherNo}, #{name}, #{gender}, #{title}, #{majorId}, #{majorName}, #{college}, #{phone}, #{email}, #{enabled}, NOW(), NOW())
+    </insert>
+
+    <update id="update" parameterType="com.example.demo.entity.Teacher">
+        UPDATE teacher
+        SET teacher_no = #{teacherNo},
+            name = #{name},
+            gender = #{gender},
+            title = #{title},
+            major_id = #{majorId},
+            major_name = #{majorName},
+            college = #{college},
+            phone = #{phone},
+            email = #{email},
+            enabled = #{enabled},
+            updated_at = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM teacher WHERE id = #{id}
+    </delete>
+
+    <select id="countById" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM teacher WHERE id = #{id}
+    </select>
+
+    <select id="countByTeacherNo" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM teacher WHERE teacher_no = #{teacherNo}
+    </select>
+
+</mapper>

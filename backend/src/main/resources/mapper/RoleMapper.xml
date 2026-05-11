@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.RoleMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.Role">
+        <id column="id" property="id" />
+        <result column="role_name" property="roleName" />
+        <result column="role_code" property="roleCode" />
+        <result column="description" property="description" />
+        <result column="permissions" property="permissions" />
+        <result column="enabled" property="enabled" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+    </resultMap>
+
+    <sql id="BaseColumnList">
+        id, role_name, role_code, description, permissions, enabled, created_at, updated_at
+    </sql>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumnList" />
+        FROM role
+        ORDER BY created_at DESC
+    </select>
+
+    <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumnList" />
+        FROM role
+        WHERE id = #{id}
+    </select>
+
+    <select id="findByRoleCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumnList" />
+        FROM role
+        WHERE role_code = #{roleCode}
+    </select>
+
+    <select id="findByRoleName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumnList" />
+        FROM role
+        WHERE role_name = #{roleName}
+    </select>
+
+    <insert id="insert" parameterType="com.example.demo.entity.Role" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO role (role_name, role_code, description, permissions, enabled, created_at, updated_at)
+        VALUES (#{roleName}, #{roleCode}, #{description}, #{permissions}, #{enabled}, NOW(), NOW())
+    </insert>
+
+    <update id="update" parameterType="com.example.demo.entity.Role">
+        UPDATE role
+        SET role_name = #{roleName},
+            role_code = #{roleCode},
+            description = #{description},
+            permissions = #{permissions},
+            enabled = #{enabled},
+            updated_at = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM role WHERE id = #{id}
+    </delete>
+
+    <select id="countById" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM role WHERE id = #{id}
+    </select>
+
+    <select id="countByRoleCode" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM role WHERE role_code = #{roleCode}
+    </select>
+
+</mapper>

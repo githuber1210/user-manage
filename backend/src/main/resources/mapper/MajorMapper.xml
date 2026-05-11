@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.MajorMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.Major">
+        <id column="id" property="id" />
+        <result column="major_name" property="majorName" />
+        <result column="major_code" property="majorCode" />
+        <result column="college" property="college" />
+        <result column="training_program" property="trainingProgram" />
+        <result column="duration" property="duration" />
+        <result column="enabled" property="enabled" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+    </resultMap>
+
+    <sql id="BaseColumnList">
+        id, major_name, major_code, college, training_program, duration, enabled, created_at, updated_at
+    </sql>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumnList" />
+        FROM major
+        ORDER BY created_at DESC
+    </select>
+
+    <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumnList" />
+        FROM major
+        WHERE id = #{id}
+    </select>
+
+    <select id="findByMajorCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumnList" />
+        FROM major
+        WHERE major_code = #{majorCode}
+    </select>
+
+    <select id="findByMajorName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumnList" />
+        FROM major
+        WHERE major_name = #{majorName}
+    </select>
+
+    <insert id="insert" parameterType="com.example.demo.entity.Major" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO major (major_name, major_code, college, training_program, duration, enabled, created_at, updated_at)
+        VALUES (#{majorName}, #{majorCode}, #{college}, #{trainingProgram}, #{duration}, #{enabled}, NOW(), NOW())
+    </insert>
+
+    <update id="update" parameterType="com.example.demo.entity.Major">
+        UPDATE major
+        SET major_name = #{majorName},
+            major_code = #{majorCode},
+            college = #{college},
+            training_program = #{trainingProgram},
+            duration = #{duration},
+            enabled = #{enabled},
+            updated_at = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM major WHERE id = #{id}
+    </delete>
+
+    <select id="countById" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM major WHERE id = #{id}
+    </select>
+
+    <select id="countByMajorCode" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM major WHERE major_code = #{majorCode}
+    </select>
+
+</mapper>
