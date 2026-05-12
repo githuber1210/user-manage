@@ -1,6 +1,5 @@
 <template>
-  <Login v-if="isLoginPage" />
-  <div v-else class="admin-layout">
+  <div class="admin-layout">
     <aside class="sidebar" :class="{ collapsed: sidebarCollapsed }">
       <div class="sidebar-brand">
         <div class="brand-icon">
@@ -94,16 +93,6 @@
           </div>
         </div>
         <div class="topbar-right">
-          <div class="user-info" v-if="currentUser">
-            <span class="user-name">{{ currentUser.nickname || currentUser.username }}</span>
-            <button class="logout-btn" @click="handleLogout" title="退出登录">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                <polyline points="16 17 21 12 16 7"/>
-                <line x1="21" y1="12" x2="9" y2="12"/>
-              </svg>
-            </button>
-          </div>
           <div class="current-time">{{ currentTime }}</div>
         </div>
       </header>
@@ -119,19 +108,14 @@
 
 <script setup>
 import { computed, ref, onMounted, onUnmounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import Login from './views/Login.vue'
+import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const router = useRouter()
 const sidebarCollapsed = ref(false)
 const currentTime = ref('')
-const currentUser = ref(null)
 let timer = null
 
 const currentPath = computed(() => route.path)
-
-const isLoginPage = computed(() => currentPath.value === '/login')
 
 const isActive = (path) => {
   return currentPath.value.startsWith(path)
@@ -175,30 +159,9 @@ const updateTime = () => {
   })
 }
 
-const getUserInfo = () => {
-  const userInfo = localStorage.getItem('userInfo')
-  if (userInfo) {
-    try {
-      currentUser.value = JSON.parse(userInfo)
-    } catch (e) {
-      console.error('解析用户信息失败', e)
-    }
-  }
-}
-
-const handleLogout = () => {
-  if (confirm('确定要退出登录吗？')) {
-    localStorage.removeItem('token')
-    localStorage.removeItem('userInfo')
-    currentUser.value = null
-    router.push('/login')
-  }
-}
-
 onMounted(() => {
   updateTime()
   timer = setInterval(updateTime, 1000)
-  getUserInfo()
 })
 
 onUnmounted(() => {
@@ -446,39 +409,6 @@ html, body {
   display: flex;
   align-items: center;
   gap: 16px;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 6px 12px;
-  background: rgba(59, 130, 246, 0.08);
-  border-radius: var(--radius);
-}
-
-.user-name {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.logout-btn {
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  cursor: pointer;
-  padding: 6px;
-  border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-}
-
-.logout-btn:hover {
-  background: rgba(239, 68, 68, 0.1);
-  color: var(--danger);
 }
 
 .current-time {
