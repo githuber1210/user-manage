@@ -12,7 +12,10 @@ const instance = axios.create({
 // 请求拦截器
 instance.interceptors.request.use(
   config => {
-    // 在发送请求之前做些什么
+    const token = localStorage.getItem('token')
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
     console.log('Request:', config)
     return config
   },
@@ -34,9 +37,17 @@ instance.interceptors.response.use(
     // 处理响应错误
     console.error('Response Error:', error)
     
-    // 统一处理错误提示
     if (error.response) {
       const { status, data } = error.response
+      
+      if (status === 401) {
+        localStorage.removeItem('token')
+        localStorage.removeItem('userInfo')
+        alert('登录已过期，请重新登录')
+        window.location.href = '/login'
+        return Promise.reject(error)
+      }
+      
       alert(data.message || `请求失败，状态码：${status}`)
     } else if (error.request) {
       alert('请求超时或网络异常')

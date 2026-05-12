@@ -91,4 +91,32 @@ public class UserServiceImpl implements UserService {
     public User getUserByUsername(String username) {
         return userMapper.findByUsername(username);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public User findByUsername(String username) {
+        return userMapper.findByUsername(username);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public boolean existsByUsername(String username) {
+        return userMapper.countByUsername(username) > 0;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public boolean existsByEmail(String email) {
+        return userMapper.countByEmail(email) > 0;
+    }
+
+    @Override
+    public User save(User user) {
+        if (user.getId() == null) {
+            userMapper.insert(user);
+        } else {
+            userMapper.update(user);
+        }
+        return user;
+    }
 }

@@ -198,7 +198,7 @@ const clearSearch = () => {
 }
 
 const editUser = (id) => {
-  router.push(`/edit/${id}`)
+  router.push(`/users/edit/${id}`)
 }
 
 const deleteUser = async (id, username) => {

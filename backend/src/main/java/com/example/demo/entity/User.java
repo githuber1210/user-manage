@@ -13,7 +13,12 @@ public class User {
 
     private Long id;
     private String username;
+    private String password;
+    private String nickname;
     private String email;
+    private String phone;
+    private Long roleId;
+    private String status;
     private Integer age;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

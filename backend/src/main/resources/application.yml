@@ -14,6 +14,11 @@ spring:
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
   
+  # SQL初始化配置 (数据库已存在数据，设置为never避免重复插入)
+  sql:
+    init:
+      mode: never
+
   # MyBatis配置
   mybatis:
     mapper-locations: classpath:mapper/*.xml
@@ -21,6 +26,11 @@ spring:
     configuration:
       map-underscore-to-camel-case: true
       log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# JWT配置
+jwt:
+  secret: mySecretKeyForJwtTokenGeneration1234567890MyDemoAppSecret
+  expiration: 86400000
 
 # 日志配置
 logging:

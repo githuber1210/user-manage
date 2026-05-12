@@ -6,14 +6,19 @@
     <resultMap id="BaseResultMap" type="com.example.demo.entity.User">
         <id column="id" property="id" />
         <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="nickname" property="nickname" />
         <result column="email" property="email" />
+        <result column="phone" property="phone" />
+        <result column="role_id" property="roleId" />
+        <result column="status" property="status" />
         <result column="age" property="age" />
         <result column="created_at" property="createdAt" />
         <result column="updated_at" property="updatedAt" />
     </resultMap>
 
     <sql id="BaseColumnList">
-        id, username, email, age, created_at, updated_at
+        id, username, password, nickname, email, phone, role_id, status, age, created_at, updated_at
     </sql>
 
     <select id="findAll" resultMap="BaseResultMap">
@@ -55,14 +60,19 @@
     </select>
 
     <insert id="insert" parameterType="com.example.demo.entity.User" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user (username, email, age, created_at, updated_at)
-        VALUES (#{username}, #{email}, #{age}, NOW(), NOW())
+        INSERT INTO user (username, password, nickname, email, phone, role_id, status, age, created_at, updated_at)
+        VALUES (#{username}, #{password}, #{nickname}, #{email}, #{phone}, #{roleId}, #{status}, #{age}, NOW(), NOW())
     </insert>
 
     <update id="update" parameterType="com.example.demo.entity.User">
         UPDATE user
         SET username = #{username},
+            password = #{password},
+            nickname = #{nickname},
             email = #{email},
+            phone = #{phone},
+            role_id = #{roleId},
+            status = #{status},
             age = #{age},
             updated_at = NOW()
         WHERE id = #{id}
@@ -74,6 +84,14 @@
 
     <select id="countById" parameterType="java.lang.Long" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM user WHERE id = #{id}
+    </select>
+
+    <select id="countByUsername" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM user WHERE username = #{username}
+    </select>
+
+    <select id="countByEmail" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM user WHERE email = #{email}
     </select>
 
 </mapper>

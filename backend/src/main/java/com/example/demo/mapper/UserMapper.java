@@ -26,4 +26,8 @@ public interface UserMapper {
     int deleteById(@Param("id") Long id);
 
     int countById(@Param("id") Long id);
+
+    int countByUsername(@Param("username") String username);
+
+    int countByEmail(@Param("email") String email);
 }

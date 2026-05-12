@@ -57,4 +57,36 @@ public interface UserService {
      * @return 用户对象
      */
     User getUserByUsername(String username);
+
+    /**
+     * 根据用户名查询用户（用于认证）
+     *
+     * @param username 用户名
+     * @return 用户对象
+     */
+    User findByUsername(String username);
+
+    /**
+     * 检查用户名是否存在
+     *
+     * @param username 用户名
+     * @return 是否存在
+     */
+    boolean existsByUsername(String username);
+
+    /**
+     * 检查邮箱是否存在
+     *
+     * @param email 邮箱
+     * @return 是否存在
+     */
+    boolean existsByEmail(String email);
+
+    /**
+     * 保存用户（用于注册）
+     *
+     * @param user 用户对象
+     * @return 保存后的用户对象
+     */
+    User save(User user);
 }
