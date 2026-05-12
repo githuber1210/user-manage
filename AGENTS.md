@@ -1,79 +1,75 @@
-# 项目代理与智能体配置
+# Agent 全局指令
 
-## 1. API 代理配置
+## 1. 项目概述
 
-### 1.1 前端开发代理
+Vue + Spring Boot 前后端分离演示项目，包含用户管理 CRUD 操作。
 
-前端使用 Vite 配置开发环境代理，将 API 请求转发到后端服务：
+**技术栈**：
 
-```javascript
-// frontend/vite.config.js
-server: {
-  proxy: {
-    '/api': {
-      target: 'http://localhost:8080',
-      changeOrigin: true
-    }
-  }
-}
-```
+- 后端：Java 8 + Spring Boot 2.7.18 + MyBatis + MySQL
+- 前端：Vue 3 + Vue Router + Axios + Bootstrap + Vite
 
-**代理规则**：
-- 请求路径 `/api/*` → 转发至 `http://localhost:8080/api/*`
-- 开发环境：前端 `http://localhost:5173` → 后端 `http://localhost:8080`
+## 2. 核心约束
 
-### 1.2 后端跨域配置
+### 2.1 禁止操作
 
-后端通过 `WebConfig` 配置跨域允许列表：
+- ❌ 禁止使用 Java 11+ 语法特性（项目要求 Java 8）
+- ❌ 禁止引入未在 `pom.xml` 中声明的新依赖
+- ❌ 禁止修改 `application.yml` 中的数据库连接配置
+- ❌ 禁止删除或重命名已有文件
+- ❌ 禁止提交包含敏感信息（密码、密钥）的代码
 
-```java
-// backend/config/WebConfig.java
-@Configuration
-public class WebConfig implements WebMvcConfigurer {
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**")
-                .allowedOrigins("http://localhost:5173")
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedHeaders("*");
-    }
-}
-```
+### 2.2 命名规范
 
-## 2. 智能体配置
+- Java 类：PascalCase（如 `UserController.java`）
+- Vue 组件：PascalCase（如 `UserList.vue`）
+- API 文件：小写连字符（如 `user.js`）
+- 变量/方法：camelCase
+- 常量：UPPER\_CASE\_WITH\_UNDERSCORES
 
-### 2.1 代码助手智能体
+### 2.3 代码风格
 
-本项目集成了代码助手智能体，支持以下功能：
+- Java：UTF-8，4 空格缩进，方法≤50行，类≤200行
+- Vue：UTF-8，2 空格缩进，使用 `<script setup>` 语法
+- API 调用必须封装到 `src/api/` 目录
 
-| 功能 | 说明 |
-|------|------|
-| 代码生成 | 根据需求自动生成 Java/Vue 代码 |
-| 代码审查 | 检查代码风格和潜在问题 |
-| 文档生成 | 自动生成 API 文档和项目规范 |
-| 代码重构 | 优化现有代码结构 |
+## 3. 目录职责
 
-### 2.2 智能体工作流程
+| 目录                                                   | 职责           | 约束                  |
+| :--------------------------------------------------- | :----------- | :------------------ |
+| `backend/src/main/java/com/example/demo/controller/` | REST API 控制层 | 仅处理 HTTP 请求，不包含业务逻辑 |
+| `backend/src/main/java/com/example/demo/service/`    | 业务逻辑层        | 事务管理、数据校验           |
+| `backend/src/main/java/com/example/demo/mapper/`     | 数据访问层        | MyBatis 接口，配合 XML   |
+| `backend/src/main/java/com/example/demo/dto/`        | 数据传输对象       | 隔离实体与外部接口           |
+| `frontend/src/api/`                                  | API 封装       | 统一管理所有后端调用          |
+| `frontend/src/views/`                                | 页面组件         | Vue 单文件组件           |
+
+## 4. 工作流程
+
+### 4.1 开发流程
 
 ```
-用户需求 → 智能体分析 → 代码生成/修改 → 规范校验 → 测试验证 → 交付
+需求分析 → 代码实现 → 测试验证 → 提交
 ```
 
-## 3. API 接口代理
+### 4.2 代码修改规范
 
-### 3.1 接口列表
+1. 先读取目标文件最新内容
+2. 最小化修改，保持代码风格一致
+3. 确保修改后项目可正常构建运行
 
-| 接口路径 | HTTP方法 | 功能描述 |
-|----------|----------|----------|
-| `/api/users` | GET | 获取用户列表 |
-| `/api/users/{id}` | GET | 获取单个用户 |
-| `/api/users` | POST | 创建用户 |
-| `/api/users/{id}` | PUT | 更新用户 |
-| `/api/users/{id}` | DELETE | 删除用户 |
+### 4.3 测试验证
 
-### 3.2 响应格式
+- 后端：运行 `mvn spring-boot:run` 启动服务
+- 前端：运行 `npm install && npm run dev` 启动开发服务器
 
-统一响应封装：
+## 5. API 规范
+
+### 5.1 接口路径前缀
+
+所有 API 接口以 `/api/` 开头
+
+### 5.2 统一响应格式
 
 ```json
 {
@@ -83,62 +79,20 @@ public class WebConfig implements WebMvcConfigurer {
 }
 ```
 
-## 4. 环境变量配置
+### 5.3 状态码
 
-### 4.1 后端环境变量
+- 200：成功
+- 400：参数错误
+- 404：资源未找到
+- 500：服务器错误
 
-| 变量名 | 说明 | 默认值 |
-|--------|------|--------|
-| `SERVER_PORT` | 服务端口 | 8080 |
-| `DB_URL` | 数据库连接URL | `jdbc:mysql://localhost:3306/example_db` |
-| `DB_USERNAME` | 数据库用户名 | root |
-| `DB_PASSWORD` | 数据库密码 | 123456 |
+## 6. 部署约束
 
-### 4.2 前端环境变量
+### 6.1 开发环境
 
-| 变量名 | 说明 | 默认值 |
-|--------|------|--------|
-| `VITE_API_BASE_URL` | API 基础地址 | `/api` |
+- 后端：`http://localhost:8080`
+- 前端：`http://localhost:5173`
 
-## 5. 部署代理
+### 6.2 代理配置
 
-### 5.1 生产环境
-
-生产环境建议使用反向代理（如 Nginx）：
-
-```nginx
-server {
-    listen 80;
-    server_name example.com;
-    
-    location / {
-        root /path/to/frontend/dist;
-        try_files $uri $uri/ /index.html;
-    }
-    
-    location /api/ {
-        proxy_pass http://localhost:8080/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-    }
-}
-```
-
-### 5.2 Docker 部署
-
-使用 Docker Compose 编排前后端服务：
-
-```yaml
-version: '3.8'
-services:
-  backend:
-    build: ./backend
-    ports:
-      - "8080:8080"
-  
-  frontend:
-    build: ./frontend
-    ports:
-      - "5173:5173"
-```
-
+前端请求 `/api/*` 自动转发至后端 `http://localhost:8080/api/*`

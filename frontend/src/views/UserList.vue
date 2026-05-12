@@ -326,7 +326,7 @@ onMounted(() => {
 .search-bar {
   padding: 16px 20px;
   border-bottom: 1px solid var(--border-color);
-  background: #f8fafc;
+  background: var(--header-bg);
 }
 
 .search-input-wrapper {
@@ -350,7 +350,8 @@ onMounted(() => {
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   font-size: 14px;
-  background: #ffffff;
+  background: var(--input-bg);
+  color: var(--input-text);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
@@ -431,7 +432,7 @@ onMounted(() => {
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  background: #f8fafc;
+  background: var(--header-bg);
   border-bottom: 1px solid var(--border-color);
   white-space: nowrap;
 }
@@ -446,7 +447,7 @@ onMounted(() => {
 }
 
 .table-row:hover {
-  background: #f8fafc;
+  background: var(--hover-bg);
 }
 
 .table-row td {

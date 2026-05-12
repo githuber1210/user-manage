@@ -238,7 +238,7 @@ onMounted(() => {
   border-radius: var(--radius);
   font-size: 14px;
   transition: border-color 0.2s, box-shadow 0.2s;
-  background: #ffffff;
+  background: var(--input-bg); color: var(--input-text);
 }
 
 .form-input:focus,
@@ -289,12 +289,10 @@ onMounted(() => {
   cursor: not-allowed;
 }
 
-.btn-secondary {
-  background: #f1f5f9;
+.btn-secondary { background: var(--hover-bg);
   color: var(--text-primary);
 }
 
-.btn-secondary:hover {
-  background: #e2e8f0;
+.btn-secondary:hover { background: var(--border-color);
 }
 </style>

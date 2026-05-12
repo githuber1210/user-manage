@@ -339,7 +339,8 @@ onMounted(() => {
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   font-size: 14px;
-  background: #ffffff;
+  background: var(--input-bg);
+  color: var(--input-text);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 

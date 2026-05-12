@@ -35,12 +35,12 @@
 
             <div class="form-group">
               <label class="form-label">班级名称 <span class="required">*</span></label>
-              <input type="text" v-model="form.className" class="form-input" placeholder="如: 计算机2021级1班" />
+              <input type="text" v-model="form.className" class="form-input" placeholder="如：计算机2021级1班" />
               <span v-if="errors.className" class="error-text">{{ errors.className }}</span>
             </div>
 
             <div class="form-group">
-              <label class="form-label">所属专业 <span class="required">*</span></label>
+              <label class="form-label">所属专业<span class="required">*</span></label>
               <select v-model="form.majorId" class="form-select">
                 <option value="">请选择专业</option>
                 <option v-for="major in majors" :key="major.id" :value="major.id">
@@ -52,8 +52,8 @@
 
             <div class="form-group">
               <label class="form-label">年级 <span class="required">*</span></label>
-              <input type="text" v-model="form.grade" class="form-input" placeholder="如: 2021" />
-              <span class="hint-text">请输入年级，如: 2021</span>
+              <input type="text" v-model="form.grade" class="form-input" placeholder="如：2021" />
+              <span class="hint-text">请输入年级，如：2021</span>
               <span v-if="errors.grade" class="error-text">{{ errors.grade }}</span>
             </div>
 
@@ -286,7 +286,7 @@ onMounted(() => {
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   font-size: 14px;
-  background: #f8fafc;
+  background: var(--header-bg);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
@@ -295,7 +295,7 @@ onMounted(() => {
   outline: none;
   border-color: #ec4899;
   box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.15);
-  background: #ffffff;
+  background: var(--input-bg); color: var(--input-text);
 }
 
 .form-input:disabled {
@@ -404,12 +404,10 @@ onMounted(() => {
   cursor: not-allowed;
 }
 
-.btn-secondary {
-  background: #f1f5f9;
+.btn-secondary { background: var(--hover-bg);
   color: var(--text-primary);
 }
 
-.btn-secondary:hover {
-  background: #e2e8f0;
+.btn-secondary:hover { background: var(--border-color);
 }
 </style>

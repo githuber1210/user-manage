@@ -93,6 +93,15 @@
           </div>
         </div>
         <div class="topbar-right">
+          <button class="theme-toggle-btn" @click="toggleTheme" :title="theme === 'light' ? '切换至暗黑模式' : '切换至浅色模式'">
+            <svg v-if="theme === 'light'" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+            <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
           <div class="current-time">{{ currentTime }}</div>
         </div>
       </header>
@@ -109,7 +118,9 @@
 <script setup>
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { useTheme } from './composables/useTheme'
 
+const { theme, toggleTheme, loadTheme } = useTheme()
 const route = useRoute()
 const sidebarCollapsed = ref(false)
 const currentTime = ref('')
@@ -160,6 +171,7 @@ const updateTime = () => {
 }
 
 onMounted(() => {
+  loadTheme()
   updateTime()
   timer = setInterval(updateTime, 1000)
 })
@@ -183,6 +195,7 @@ onUnmounted(() => {
   --sidebar-border: #e0e0e0;
   --sidebar-width: 240px;
   --sidebar-collapsed-width: 64px;
+  --sidebar-brand-bg: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
   --topbar-bg: #ffffff;
   --topbar-height: 56px;
   --content-bg: #ffffff;
@@ -199,6 +212,35 @@ onUnmounted(() => {
   --card-shadow-hover: 0 4px 12px rgba(0,0,0,0.06);
   --radius: 8px;
   --radius-lg: 12px;
+}
+
+[data-theme="dark"] {
+  --sidebar-bg: #1a1a2e;
+  --sidebar-hover: #252542;
+  --sidebar-active: #60a5fa;
+  --sidebar-active-bg: rgba(96, 165, 250, 0.15);
+  --sidebar-text: #e5e7eb;
+  --sidebar-text-hover: #ffffff;
+  --sidebar-text-active: #60a5fa;
+  --sidebar-border: #374151;
+  --sidebar-brand-bg: linear-gradient(135deg, #1a1a2e 0%, #252542 100%);
+  --topbar-bg: #1f2937;
+  --content-bg: #111827;
+  --accent: #60a5fa;
+  --accent-hover: #93c5fd;
+  --primary: #60a5fa;
+  --danger: #f87171;
+  --success: #34d399;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --border-color: #374151;
+  --card-bg: #1f2937;
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+  --card-shadow-hover: 0 4px 12px rgba(0,0,0,0.4);
+  --input-bg: #374151;
+  --input-text: #f9fafb;
+  --header-bg: #1f2937;
+  --hover-bg: #374151;
 }
 
 * {
@@ -247,7 +289,7 @@ html, body {
   padding: 0 20px;
   gap: 12px;
   border-bottom: 1px solid var(--sidebar-border);
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  background: var(--sidebar-brand-bg);
 }
 
 .brand-icon {
@@ -341,7 +383,7 @@ html, body {
 .sidebar-footer {
   padding: 16px 20px;
   border-top: 1px solid var(--sidebar-border);
-  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  background: var(--sidebar-brand-bg);
 }
 
 .version-info {
@@ -409,6 +451,24 @@ html, body {
   display: flex;
   align-items: center;
   gap: 16px;
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--sidebar-hover);
+  color: var(--text-primary);
 }
 
 .current-time {

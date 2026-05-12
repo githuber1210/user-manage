@@ -37,12 +37,12 @@
 
             <div class="form-group">
               <label class="form-label">所属学院</label>
-              <input type="text" v-model="form.college" class="form-input" placeholder="如: 计算机学院" />
+              <input type="text" v-model="form.college" class="form-input" placeholder="如：计算机学院" />
             </div>
 
             <div class="form-group">
               <label class="form-label">学制（年）</label>
-              <input type="number" v-model="form.duration" class="form-input" placeholder="如: 4" min="1" />
+              <input type="number" v-model="form.duration" class="form-input" placeholder="如：4" min="1" />
               <span class="hint-text">请输入正整数</span>
             </div>
 
@@ -316,12 +316,10 @@ const handleSubmit = async () => {
   cursor: not-allowed;
 }
 
-.btn-secondary {
-  background: #f1f5f9;
+.btn-secondary { background: var(--hover-bg);
   color: var(--text-primary);
 }
 
-.btn-secondary:hover {
-  background: #e2e8f0;
+.btn-secondary:hover { background: var(--border-color);
 }
 </style>

@@ -247,7 +247,7 @@ onMounted(() => {
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   font-size: 14px;
-  background: #f8fafc;
+  background: var(--header-bg);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
@@ -256,7 +256,7 @@ onMounted(() => {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-  background: #ffffff;
+  background: var(--input-bg); color: var(--input-text);
 }
 
 .form-input:disabled {
@@ -369,12 +369,10 @@ onMounted(() => {
   cursor: not-allowed;
 }
 
-.btn-secondary {
-  background: #f1f5f9;
+.btn-secondary { background: var(--hover-bg);
   color: var(--text-primary);
 }
 
-.btn-secondary:hover {
-  background: #e2e8f0;
+.btn-secondary:hover { background: var(--border-color);
 }
 </style>

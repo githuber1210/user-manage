@@ -47,12 +47,12 @@
 
             <div class="form-group">
               <label class="form-label">所属学院</label>
-              <input type="text" v-model="form.college" class="form-input" placeholder="如: 计算机学院" />
+              <input type="text" v-model="form.college" class="form-input" placeholder="如：计算机学院" />
             </div>
 
             <div class="form-group">
               <label class="form-label">学制（年）</label>
-              <input type="number" v-model="form.duration" class="form-input" placeholder="如: 4" min="1" />
+              <input type="number" v-model="form.duration" class="form-input" placeholder="如：4" min="1" />
               <span class="hint-text">请输入正整数</span>
             </div>
 
@@ -256,7 +256,7 @@ onMounted(() => {
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   font-size: 14px;
-  background: #f8fafc;
+  background: var(--header-bg);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
@@ -265,7 +265,7 @@ onMounted(() => {
   outline: none;
   border-color: #8b5cf6;
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
-  background: #ffffff;
+  background: var(--input-bg); color: var(--input-text);
 }
 
 .form-input:disabled {
@@ -378,12 +378,10 @@ onMounted(() => {
   cursor: not-allowed;
 }
 
-.btn-secondary {
-  background: #f1f5f9;
+.btn-secondary { background: var(--hover-bg);
   color: var(--text-primary);
 }
 
-.btn-secondary:hover {
-  background: #e2e8f0;
+.btn-secondary:hover { background: var(--border-color);
 }
 </style>
