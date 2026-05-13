@@ -4,7 +4,7 @@ import com.example.demo.dto.ResultDTO;
 import com.example.demo.dto.RoleDTO;
 import com.example.demo.entity.Role;
 import com.example.demo.service.RoleService;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
