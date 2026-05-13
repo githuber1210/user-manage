@@ -8,12 +8,12 @@
 
 ### 🌟 技术栈优势分析
 
-| 维度        | Vue.js                      | Spring Boot      | MySQL        |
-| --------- | --------------------------- | ---------------- | ------------ |
-| **学习曲线**  | 渐进式框架，易于上手                  | 约定优于配置，快速开发      | 语法简单，文档丰富    |
+| 维度           | Vue.js                              | Spring Boot               | MySQL                    |
+| -------------- | ----------------------------------- | ------------------------- | ------------------------ |
+| **学习曲线**   | 渐进式框架，易于上手                | 约定优于配置，快速开发    | 语法简单，文档丰富       |
 | **生态成熟度** | 组件库丰富（Element Plus、Vuetify） | Spring 生态完善，社区活跃 | 市场占有率高，工具链成熟 |
-| **性能表现**  | 响应式设计，虚拟DOM优化               | 内嵌Tomcat，性能稳定    | 索引优化，查询效率高   |
-| **社区支持**  | 中文文档齐全，国内开发者多               | 官方文档完善，问题易解决     | 资料丰富，遇到问题易搜索 |
+| **性能表现**   | 响应式设计，虚拟DOM优化             | 内嵌Tomcat，性能稳定      | 索引优化，查询效率高     |
+| **社区支持**   | 中文文档齐全，国内开发者多          | 官方文档完善，问题易解决  | 资料丰富，遇到问题易搜索 |
 
 ### 💡 为什么是这个组合？
 
@@ -37,10 +37,10 @@
 >
 > 当前主流企业级后端架构中，**Spring Cloud** 确实是微服务领域的主流技术栈，但它是建立在 **Spring Boot** 基础之上的：
 >
-> | 技术               | 定位         | 作用                        |
-> | ---------------- | ---------- | ------------------------- |
-> | **Spring Boot**  | 单体/微服务基础框架 | 快速构建单个独立运行的应用             |
-> | **Spring Cloud** | 微服务治理框架    | 管理多个Spring Boot应用组成的分布式系统 |
+> | 技术             | 定位                | 作用                                    |
+> | ---------------- | ------------------- | --------------------------------------- |
+> | **Spring Boot**  | 单体/微服务基础框架 | 快速构建单个独立运行的应用              |
+> | **Spring Cloud** | 微服务治理框架      | 管理多个Spring Boot应用组成的分布式系统 |
 >
 > **两者关系**：
 >
@@ -130,30 +130,30 @@ frontend/
 
 ### 后端 Spring Boot 各层作用
 
-| 层级        | 文件                            | 职责说明                          |
-| --------- | ----------------------------- | ----------------------------- |
-| **启动类**   | DemoApplication.java          | Spring Boot 应用入口，负责启动整个后端服务   |
-| **控制器层**  | UserController.java           | 接收HTTP请求，参数校验，调用服务层，返回响应      |
-| **服务层接口** | UserService.java              | 定义业务方法契约，解耦接口与实现              |
-| **服务层实现** | UserServiceImpl.java          | 实现业务逻辑，事务管理，数据校验              |
+| 层级           | 文件                          | 职责说明                                     |
+| -------------- | ----------------------------- | -------------------------------------------- |
+| **启动类**     | DemoApplication.java          | Spring Boot 应用入口，负责启动整个后端服务   |
+| **控制器层**   | UserController.java           | 接收HTTP请求，参数校验，调用服务层，返回响应 |
+| **服务层接口** | UserService.java              | 定义业务方法契约，解耦接口与实现             |
+| **服务层实现** | UserServiceImpl.java          | 实现业务逻辑，事务管理，数据校验             |
 | **数据访问层** | UserMapper.java               | 数据库CRUD操作，MyBatis接口，配合XML映射文件 |
-| **实体类**   | User.java                     | **普通POJO实体，映射数**据库表结构         |
-| **DTO**   | UserDTO.java / ResultDTO.java | 数据传输对象，隔离内部实体与外部接口            |
-| **异常处理**  | GlobalExceptionHandler.java   | 统一异常捕获，返回标准化错误响应              |
-| **配置类**   | WebConfig.java                | 跨域配置、过滤器等Web相关配置              |
+| **实体类**     | User.java                     | **普通POJO实体，映射数**据库表结构           |
+| **DTO**        | UserDTO.java / ResultDTO.java | 数据传输对象，隔离内部实体与外部接口         |
+| **异常处理**   | GlobalExceptionHandler.java   | 统一异常捕获，返回标准化错误响应             |
+| **配置类**     | WebConfig.java                | 跨域配置、过滤器等Web相关配置                |
 
 ### 前端 Vue 各组件作用
 
-| 文件                     | 职责说明                  |
-| ---------------------- | --------------------- |
-| **main.js**            | 创建Vue实例，配置路由，挂载应用     |
-| **App.vue**            | 根组件，定义全局布局和导航         |
-| **router/index.js**    | 路由配置，定义页面路径与组件映射      |
-| **api/axios.js**       | Axios封装，配置请求拦截器和响应拦截器 |
-| **api/user.js**        | 用户相关API接口封装，统一管理API调用 |
-| **views/UserList.vue** | 用户列表页面，展示用户数据，支持编辑删除  |
-| **views/AddUser.vue**  | 添加用户页面，表单验证，提交创建请求    |
-| **views/EditUser.vue** | 编辑用户页面，获取用户信息，提交更新请求  |
+| 文件                   | 职责说明                                 |
+| ---------------------- | ---------------------------------------- |
+| **main.js**            | 创建Vue实例，配置路由，挂载应用          |
+| **App.vue**            | 根组件，定义全局布局和导航               |
+| **router/index.js**    | 路由配置，定义页面路径与组件映射         |
+| **api/axios.js**       | Axios封装，配置请求拦截器和响应拦截器    |
+| **api/user.js**        | 用户相关API接口封装，统一管理API调用     |
+| **views/UserList.vue** | 用户列表页面，展示用户数据，支持编辑删除 |
+| **views/AddUser.vue**  | 添加用户页面，表单验证，提交创建请求     |
+| **views/EditUser.vue** | 编辑用户页面，获取用户信息，提交更新请求 |
 
 ### 📚 分层架构的意义
 
@@ -189,13 +189,13 @@ frontend/
 
 #### Entity 与 DTO 的区别与作用
 
-| 特性       | Entity (实体类)      | DTO (数据传输对象)       |
-| -------- | ----------------- | ------------------ |
-| **用途**   | 映射数据库表结构，与数据库直接交互 | 在不同层级之间传输数据，隔离内部实现 |
-| **字段**   | 与数据库表字段一一对应       | 根据业务需求灵活定义字段       |
-| **生命周期** | 与数据库事务绑定          | 请求开始时创建，响应结束时销毁    |
-| **安全性**  | 可能包含敏感字段（如密码）     | 只包含需要暴露的数据         |
-| **序列化**  | 一般不直接序列化返回        | 专门设计用于 JSON 序列化    |
+| 特性         | Entity (实体类)                    | DTO (数据传输对象)                   |
+| ------------ | ---------------------------------- | ------------------------------------ |
+| **用途**     | 映射数据库表结构，与数据库直接交互 | 在不同层级之间传输数据，隔离内部实现 |
+| **字段**     | 与数据库表字段一一对应             | 根据业务需求灵活定义字段             |
+| **生命周期** | 与数据库事务绑定                   | 请求开始时创建，响应结束时销毁       |
+| **安全性**   | 可能包含敏感字段（如密码）         | 只包含需要暴露的数据                 |
+| **序列化**   | 一般不直接序列化返回               | 专门设计用于 JSON 序列化             |
 
 **Entity 的作用：**
 
@@ -241,23 +241,23 @@ frontend/
 
 ### 后端技术栈
 
-| 技术          | 版本     | 说明     |
-| ----------- | ------ | ------ |
-| Java        | 8      | 编程语言   |
-| Spring Boot | 2.7.18 | 后端框架   |
-| MyBatis     | 2.3.0  | 数据访问层  |
+| 技术        | 版本   | 说明         |
+| ----------- | ------ | ------------ |
+| Java        | 8      | 编程语言     |
+| Spring Boot | 2.7.18 | 后端框架     |
+| MyBatis     | 2.3.0  | 数据访问层   |
 | MySQL       | 8.0+   | 关系型数据库 |
-| Lombok      | 1.18.x | 简化代码   |
+| Lombok      | 1.18.x | 简化代码     |
 
 ### 前端技术栈
 
-| 技术         | 版本    | 说明      |
-| ---------- | ----- | ------- |
-| Vue        | 3.x   | 前端框架    |
-| Vue Router | 4.x   | 路由管理    |
+| 技术       | 版本  | 说明       |
+| ---------- | ----- | ---------- |
+| Vue        | 3.x   | 前端框架   |
+| Vue Router | 4.x   | 路由管理   |
 | Axios      | 1.6.x | HTTP客户端 |
-| Bootstrap  | 5.3.x | CSS框架   |
-| Vite       | 5.x   | 构建工具    |
+| Bootstrap  | 5.3.x | CSS框架    |
+| Vite       | 5.x   | 构建工具   |
 
 ## 🔄 前后端交互流程
 
@@ -305,18 +305,18 @@ frontend/
 
 下面用简单的话解释每个步骤在做什么：
 
-| 步骤 | 环节    | 这一步在做什么         | 举个通俗的例子         |
-| -- | ----- | --------------- | --------------- |
-| 1  | 前端页面  | 用户在网页表单中填写信息    | 你在注册页面输入用户名、邮箱  |
-| 2  | 组装请求  | 把用户填写的数据组装成请求格式 | 把填好的信息整理好装进"信封" |
-| 3  | 发送请求  | 将请求发送到后端服务器     | 把"信封"寄到公司总部     |
-| 4  | 接收请求  | 后端接收并检查数据格式     | 前台收到信件，检查格式对不对  |
-| 5  | 业务检查  | 检查数据是否符合业务规则    | 检查用户名是否已被注册     |
-| 6  | 存储数据  | 将数据存入数据库        | 把用户信息录入公司档案系统   |
-| 7  | 数据库写入 | 数据库执行插入操作       | 档案管理员把信息存进文件柜   |
-| 8  | 封装响应  | 准备返回结果给前端       | 准备回复信件          |
-| 9  | 返回结果  | 将结果返回给前端        | 把回复信件寄回给用户      |
-| 10 | 显示结果  | 前端显示操作结果        | 用户看到"注册成功"的提示   |
+| 步骤 | 环节       | 这一步在做什么                 | 举个通俗的例子               |
+| ---- | ---------- | ------------------------------ | ---------------------------- |
+| 1    | 前端页面   | 用户在网页表单中填写信息       | 你在注册页面输入用户名、邮箱 |
+| 2    | 组装请求   | 把用户填写的数据组装成请求格式 | 把填好的信息整理好装进"信封" |
+| 3    | 发送请求   | 将请求发送到后端服务器         | 把"信封"寄到公司总部         |
+| 4    | 接收请求   | 后端接收并检查数据格式         | 前台收到信件，检查格式对不对 |
+| 5    | 业务检查   | 检查数据是否符合业务规则       | 检查用户名是否已被注册       |
+| 6    | 存储数据   | 将数据存入数据库               | 把用户信息录入公司档案系统   |
+| 7    | 数据库写入 | 数据库执行插入操作             | 档案管理员把信息存进文件柜   |
+| 8    | 封装响应   | 准备返回结果给前端             | 准备回复信件                 |
+| 9    | 返回结果   | 将结果返回给前端               | 把回复信件寄回给用户         |
+| 10   | 显示结果   | 前端显示操作结果               | 用户看到"注册成功"的提示     |
 
 **简单总结**：就像你去银行开户，你填表格（前端）→ 柜员检查你的资料（后端）→ 系统记录你的信息（数据库）→ 告诉你开户成功（返回结果）。
 
@@ -331,20 +331,26 @@ frontend/
 **下载地址**：
 
 - Oracle JDK 8：<https://www.oracle.com/java/technologies/downloads/#java8>
-- OpenJDK 8：<https://adoptium.net/temurin/releases/?version=8>
 
 **配置环境变量**：
 
 1. 右键"此电脑" → "属性" → "高级系统设置" → "环境变量"
+
 2. 在"系统变量"中新建：
+
    - **变量名**：`JAVA_HOME`
    - **变量值**：JDK 安装路径（如 `C:\Program Files\Java\jdk1.8.0_381`）
+
 3. 在"系统变量"的 `Path` 中添加：
+
    - `%JAVA_HOME%\bin`
+
 4. 验证安装：
+
    ```bash
    java -version
    ```
+
    显示类似：`java version "1.8.0_381"`
 
 #### 0.2 安装 Maven
@@ -354,13 +360,18 @@ frontend/
 **配置步骤**：
 
 1. 解压 Maven 到任意目录（如 `D:\apache-maven-3.9.6`）
+
 2. 配置环境变量：
+
    - 新建系统变量 `MAVEN_HOME`，值为 Maven 路径
    - 在 `Path` 中添加 `%MAVEN_HOME%\bin`
+
 3. 验证安装：
+
    ```bash
    mvn -v
    ```
+
    显示 Maven 版本信息
 
 **配置 Maven 镜像（可选，推荐）**：
@@ -423,163 +434,11 @@ spring:
 
 #### 2.1 创建表结构
 
-执行 `backend/src/main/resources/schema.sql` 文件中的 SQL 脚本：
-
-```sql
-CREATE TABLE IF NOT EXISTS `user` (
-    `id` BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '用户ID',
-    `username` VARCHAR(50) NOT NULL UNIQUE COMMENT '用户名',
-    `password` VARCHAR(255) NOT NULL COMMENT '密码(BCrypt加密)',
-    `nickname` VARCHAR(50) DEFAULT NULL COMMENT '昵称',
-    `email` VARCHAR(100) NOT NULL UNIQUE COMMENT '邮箱',
-    `phone` VARCHAR(20) DEFAULT NULL COMMENT '联系电话',
-    `role_id` BIGINT DEFAULT 3 COMMENT '角色ID',
-    `status` VARCHAR(20) NOT NULL DEFAULT 'ACTIVE' COMMENT '状态(ACTIVE/DISABLED)',
-    `age` INT DEFAULT NULL COMMENT '年龄',
-    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    INDEX `idx_username` (`username`),
-    INDEX `idx_email` (`email`),
-    INDEX `idx_role_id` (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户表';
-
-CREATE TABLE IF NOT EXISTS `role` (
-    `id` BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '角色ID',
-    `role_name` VARCHAR(50) NOT NULL UNIQUE COMMENT '角色名称',
-    `role_code` VARCHAR(50) NOT NULL UNIQUE COMMENT '角色编码',
-    `description` VARCHAR(200) DEFAULT NULL COMMENT '角色描述',
-    `permissions` TEXT DEFAULT NULL COMMENT '权限标识(逗号分隔)',
-    `enabled` TINYINT(1) NOT NULL DEFAULT 1 COMMENT '是否启用',
-    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    INDEX `idx_role_code` (`role_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='角色表';
-
-CREATE TABLE IF NOT EXISTS `major` (
-    `id` BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '专业ID',
-    `major_name` VARCHAR(100) NOT NULL UNIQUE COMMENT '专业名称',
-    `major_code` VARCHAR(50) NOT NULL UNIQUE COMMENT '专业代码',
-    `college` VARCHAR(100) DEFAULT NULL COMMENT '所属学院',
-    `training_program` TEXT DEFAULT NULL COMMENT '培养方案',
-    `duration` INT DEFAULT 4 COMMENT '学制(年)',
-    `enabled` TINYINT(1) NOT NULL DEFAULT 1 COMMENT '是否启用',
-    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    INDEX `idx_major_code` (`major_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='专业表';
-
-CREATE TABLE IF NOT EXISTS `class_info` (
-    `id` BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '班级ID',
-    `class_name` VARCHAR(100) NOT NULL UNIQUE COMMENT '班级名称',
-    `major_id` BIGINT NOT NULL COMMENT '所属专业ID',
-    `major_name` VARCHAR(100) NOT NULL COMMENT '专业名称(冗余)',
-    `grade` VARCHAR(20) NOT NULL COMMENT '年级',
-    `teacher_id` BIGINT DEFAULT NULL COMMENT '班主任ID',
-    `teacher_name` VARCHAR(50) DEFAULT NULL COMMENT '班主任姓名(冗余)',
-    `student_count` INT NOT NULL DEFAULT 0 COMMENT '班级人数',
-    `enabled` TINYINT(1) NOT NULL DEFAULT 1 COMMENT '是否启用',
-    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    INDEX `idx_major_id` (`major_id`),
-    INDEX `idx_teacher_id` (`teacher_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='班级表';
-
-CREATE TABLE IF NOT EXISTS `teacher` (
-    `id` BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '教师ID',
-    `teacher_no` VARCHAR(50) NOT NULL UNIQUE COMMENT '工号',
-    `name` VARCHAR(50) NOT NULL COMMENT '姓名',
-    `gender` VARCHAR(10) DEFAULT NULL COMMENT '性别',
-    `title` VARCHAR(50) DEFAULT NULL COMMENT '职称',
-    `major_id` BIGINT DEFAULT NULL COMMENT '所属专业ID',
-    `major_name` VARCHAR(100) DEFAULT NULL COMMENT '专业名称(冗余)',
-    `college` VARCHAR(100) DEFAULT NULL COMMENT '所属学院',
-    `phone` VARCHAR(20) DEFAULT NULL COMMENT '联系电话',
-    `email` VARCHAR(100) DEFAULT NULL COMMENT '邮箱',
-    `enabled` TINYINT(1) NOT NULL DEFAULT 1 COMMENT '是否启用',
-    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    INDEX `idx_teacher_no` (`teacher_no`),
-    INDEX `idx_major_id` (`major_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='教师表';
-
-CREATE TABLE IF NOT EXISTS `student` (
-    `id` BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '学生ID',
-    `student_no` VARCHAR(50) NOT NULL UNIQUE COMMENT '学号',
-    `name` VARCHAR(50) NOT NULL COMMENT '姓名',
-    `gender` VARCHAR(10) DEFAULT NULL COMMENT '性别',
-    `birth_date` DATE DEFAULT NULL COMMENT '出生日期',
-    `class_id` BIGINT NOT NULL COMMENT '班级ID',
-    `class_name` VARCHAR(100) NOT NULL COMMENT '班级名称(冗余)',
-    `major_id` BIGINT NOT NULL COMMENT '专业ID',
-    `major_name` VARCHAR(100) NOT NULL COMMENT '专业名称(冗余)',
-    `grade` VARCHAR(20) NOT NULL COMMENT '年级',
-    `phone` VARCHAR(20) DEFAULT NULL COMMENT '联系电话',
-    `email` VARCHAR(100) DEFAULT NULL COMMENT '邮箱',
-    `status` VARCHAR(20) NOT NULL DEFAULT '在读' COMMENT '状态(在读/休学/毕业)',
-    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    INDEX `idx_student_no` (`student_no`),
-    INDEX `idx_class_id` (`class_id`),
-    INDEX `idx_major_id` (`major_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='学生表';
-```
+执行 `backend/src/main/resources/schema.sql` 文件中的 SQL 脚本
 
 #### 2.2 插入初始数据
 
-执行 `backend/src/main/resources/data.sql` 文件中的 SQL 脚本：
-
-```sql
-INSERT IGNORE INTO role (id, role_name, role_code, description, permissions, enabled, created_at, updated_at) VALUES
-(1, '管理员', 'ADMIN', '系统管理员，拥有最高权限', 'user:manage,role:manage,major:manage,class:manage,teacher:manage,student:manage', 1, NOW(), NOW()),
-(2, '教师', 'TEACHER', '任课教师', 'student:view,class:view,major:view', 1, NOW(), NOW()),
-(3, '学生', 'STUDENT', '在校学生', 'student:self,class:view', 1, NOW(), NOW());
-
-INSERT INTO major (id, major_name, major_code, college, training_program, duration, enabled, created_at, updated_at) VALUES
-(1, '计算机科学与技术', 'CS', '信息学院', '培养具备计算机科学与技术基础理论、专业知识和实践能力的高级专门人才', 4, 1, NOW(), NOW()),
-(2, '软件工程', 'SE', '信息学院', '培养掌握软件工程基本理论和专业知识，具备软件开发能力的工程技术人才', 4, 1, NOW(), NOW()),
-(3, '网络工程', 'NE', '信息学院', '培养掌握网络技术、网络安全等方面知识的高级技术人才', 4, 1, NOW(), NOW()),
-(4, '数据科学与大数据技术', 'DS', '信息学院', '培养掌握数据科学理论和大数据技术的复合型人才', 4, 1, NOW(), NOW()),
-(5, '电子信息工程', 'EE', '电子工程学院', '培养掌握电子信息领域基本理论和技术的高级工程技术人才', 4, 1, NOW(), NOW());
-
-INSERT INTO teacher (id, teacher_no, name, gender, title, major_id, major_name, college, phone, email, enabled, created_at, updated_at) VALUES
-(1, 'T001', '张明', '男', '教授', 1, '计算机科学与技术', '信息学院', '13800138001', 'zhangming@example.com', 1, NOW(), NOW()),
-(2, 'T002', '李华', '女', '副教授', 1, '计算机科学与技术', '信息学院', '13800138002', 'lihua@example.com', 1, NOW(), NOW()),
-(3, 'T003', '王强', '男', '讲师', 2, '软件工程', '信息学院', '13800138003', 'wangqiang@example.com', 1, NOW(), NOW()),
-(4, 'T004', '陈芳', '女', '副教授', 3, '网络工程', '信息学院', '13800138004', 'chenfang@example.com', 1, NOW(), NOW()),
-(5, 'T005', '刘伟', '男', '教授', 4, '数据科学与大数据技术', '信息学院', '13800138005', 'liuwei@example.com', 1, NOW(), NOW());
-
-INSERT INTO class_info (id, class_name, major_id, major_name, grade, teacher_id, teacher_name, student_count, enabled, created_at, updated_at) VALUES
-(1, '2024级计算机1班', 1, '计算机科学与技术', '2024', 1, '张明', 35, 1, NOW(), NOW()),
-(2, '2024级计算机2班', 1, '计算机科学与技术', '2024', 2, '李华', 32, 1, NOW(), NOW()),
-(3, '2024级软件工程1班', 2, '软件工程', '2024', 3, '王强', 30, 1, NOW(), NOW()),
-(4, '2023级计算机1班', 1, '计算机科学与技术', '2023', 1, '张明', 34, 1, NOW(), NOW()),
-(5, '2024级网络工程1班', 3, '网络工程', '2024', 4, '陈芳', 28, 1, NOW(), NOW()),
-(6, '2024级数据科学1班', 4, '数据科学与大数据技术', '2024', 5, '刘伟', 31, 1, NOW(), NOW());
-
-INSERT INTO student (id, student_no, name, gender, birth_date, class_id, class_name, major_id, major_name, grade, phone, email, status, created_at, updated_at) VALUES
-(1, '2024001', '张三', '男', '2005-03-15', 1, '2024级计算机1班', 1, '计算机科学与技术', '2024', '13900139001', 'zhangsan@example.com', '在读', NOW(), NOW()),
-(2, '2024002', '李四', '女', '2005-06-20', 1, '2024级计算机1班', 1, '计算机科学与技术', '2024', '13900139002', 'lisi@example.com', '在读', NOW(), NOW()),
-(3, '2024003', '王五', '男', '2005-09-10', 1, '2024级计算机1班', 1, '计算机科学与技术', '2024', '13900139003', 'wangwu@example.com', '在读', NOW(), NOW()),
-(4, '2024004', '赵六', '女', '2005-12-05', 2, '2024级计算机2班', 1, '计算机科学与技术', '2024', '13900139004', 'zhaoliu@example.com', '在读', NOW(), NOW()),
-(5, '2024005', '孙七', '男', '2006-01-20', 2, '2024级计算机2班', 1, '计算机科学与技术', '2024', '13900139005', 'sunqi@example.com', '在读', NOW(), NOW()),
-(6, '2024006', '周八', '女', '2005-04-18', 3, '2024级软件工程1班', 2, '软件工程', '2024', '13900139006', 'zhouba@example.com', '在读', NOW(), NOW()),
-(7, '2024007', '吴九', '男', '2005-07-25', 3, '2024级软件工程1班', 2, '软件工程', '2024', '13900139007', 'wujiu@example.com', '在读', NOW(), NOW()),
-(8, '2024008', '郑十', '女', '2005-10-08', 4, '2023级计算机1班', 1, '计算机科学与技术', '2023', '13900139008', 'zhengshi@example.com', '在读', NOW(), NOW()),
-(9, '2024009', '钱十一', '男', '2004-11-30', 4, '2023级计算机1班', 1, '计算机科学与技术', '2023', '13900139009', 'qianshiyi@example.com', '在读', NOW(), NOW()),
-(10, '2024010', '刘十二', '女', '2005-02-14', 5, '2024级网络工程1班', 3, '网络工程', '2024', '13900139010', 'liushier@example.com', '在读', NOW(), NOW()),
-(11, '2024011', '陈十三', '男', '2005-05-12', 6, '2024级数据科学1班', 4, '数据科学与大数据技术', '2024', '13900139011', 'chenshisan@example.com', '在读', NOW(), NOW()),
-(12, '2024012', '杨十四', '女', '2005-08-08', 1, '2024级计算机1班', 1, '计算机科学与技术', '2024', '13900139012', 'yangshisi@example.com', '在读', NOW(), NOW()),
-(13, '2024013', '黄十五', '男', '2005-11-22', 1, '2024级计算机1班', 1, '计算机科学与技术', '2024', '13900139013', 'huangshiwu@example.com', '休学', NOW(), NOW()),
-(14, '2024014', '林十六', '女', '2005-01-05', 2, '2024级计算机2班', 1, '计算机科学与技术', '2024', '13900139014', 'linshiliu@example.com', '在读', NOW(), NOW()),
-(15, '2024015', '何十七', '男', '2005-04-30', 3, '2024级软件工程1班', 2, '软件工程', '2024', '13900139015', 'heshiyi@example.com', '在读', NOW(), NOW());
-
-INSERT INTO user (id, username, password, nickname, email, phone, role_id, status, age, created_at, updated_at) VALUES
-(1, 'admin', '$2a$10$N9qo8uLOickgx2ZMRZoMye.IjzqAKL9xL5jvMFVdNJHvGCgTq/VEq', '管理员', 'admin@example.com', '13800138000', 1, 'ACTIVE', 35, NOW(), NOW()),
-(2, 'zhangming', '$2a$10$N9qo8uLOickgx2ZMRZoMye.IjzqAKL9xL5jvMFVdNJHvGCgTq/VEq', '张明', 'zhangming@example.com', '13800138001', 2, 'ACTIVE', 45, NOW(), NOW()),
-(3, 'lihua', '$2a$10$N9qo8uLOickgx2ZMRZoMye.IjzqAKL9xL5jvMFVdNJHvGCgTq/VEq', '李华', 'lihua@example.com', '13800138002', 2, 'ACTIVE', 38, NOW(), NOW()),
-(4, 'zhangsan', '$2a$10$N9qo8uLOickgx2ZMRZoMye.IjzqAKL9xL5jvMFVdNJHvGCgTq/VEq', '张三', 'zhangsan@example.com', '13900139001', 3, 'ACTIVE', 20, NOW(), NOW()),
-(5, 'lisi', '$2a$10$N9qo8uLOickgx2ZMRZoMye.IjzqAKL9xL5jvMFVdNJHvGCgTq/VEq', '李四', 'lisi@example.com', '13900139002', 3, 'ACTIVE', 19, NOW(), NOW());
-```
+执行 `backend/src/main/resources/data.sql` 文件中的 SQL 脚本
 
 ### 4. 常见问题排查
 
@@ -609,13 +468,13 @@ INSERT INTO user (id, username, password, nickname, email, phone, role_id, statu
 
 ## 🌐 API 接口
 
-| 方法     | 路径              | 描述       |
-| ------ | --------------- | -------- |
+| 方法   | 路径            | 描述             |
+| ------ | --------------- | ---------------- |
 | GET    | /api/users      | 获取所有用户列表 |
-| GET    | /api/users/{id} | 根据ID获取用户 |
-| POST   | /api/users      | 创建新用户    |
-| PUT    | /api/users/{id} | 更新用户信息   |
-| DELETE | /api/users/{id} | 删除用户     |
+| GET    | /api/users/{id} | 根据ID获取用户   |
+| POST   | /api/users      | 创建新用户       |
+| PUT    | /api/users/{id} | 更新用户信息     |
+| DELETE | /api/users/{id} | 删除用户         |
 
 **请求示例 (POST /api/users)：**
 
@@ -688,9 +547,9 @@ public class WebConfig {
 }
 ```
 
-| 字段      | 说明                                   |
-| ------- | ------------------------------------ |
+| 字段    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
 | code    | 状态码（200成功，400参数错误，404资源未找到，500服务器错误） |
-| message | 提示信息                                 |
-| data    | 响应数据                                 |
+| message | 提示信息                                                     |
+| data    | 响应数据                                                     |
 
